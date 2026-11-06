@@ -1,0 +1,26 @@
+---
+import Base from '../../../layouts/Base.astro';
+import MatchCard from '../../../components/MatchCard.astro';
+import { seasonsWithData, loadSeason, teamRecord } from '../../../lib/data.js';
+export function getStaticPaths() { return seasonsWithData().flatMap(s => loadSeason(s.slug).teams.map(t => ({ params: { season: s.slug, id: t.id } }))); }
+const { season, id } = Astro.params; const S = loadSeason(season); const t = S.teamMap[id];
+const r = teamRecord(S, id); const k = S.swiss.find(x => x.id === id);
+const roster = S.players.filter(p => p.team === id);
+const ms = S.matches.filter(m => m.teamA === id || m.teamB === id);
+---
+<Base title={t.name} season={season} active="teams">
+  <div class="wrap" style="padding-top:20px">
+    <div class="crumb"><a href={`/${season}/teams/`}>战队</a> / {t.name}</div>
+    <div class="card pad" style="display:flex;gap:22px;align-items:center;flex-wrap:wrap;background:linear-gradient(120deg,#0e3640,#14505d 70%)">
+      <img src={`/assets/teams/${t.logo}`} alt="" style="width:110px;height:110px" />
+      <div><h1 style="font-size:32px">{t.name}</h1><div class="muted">{t.className}　「{t.slogan}」</div>
+        <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap"><span class="badge">本季 {r.w} 胜 {r.l} 负</span><span class="badge">小场 {r.gw}:{r.gl}</span>{k && <span class={`badge ${k.status === 'advanced' ? 'adv' : k.status === 'eliminated' ? 'elim' : ''}`}>瑞士轮第 {k.rank} 名 · {k.w}-{k.l}</span>}</div></div>
+    </div>
+    <section class="blk"><div class="sec-h"><h2>大名单</h2><span class="muted small">主力 5 人 + 替补</span></div>
+      <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(210px,1fr))">
+        {roster.map(p => <div class="card pad" style="display:flex;gap:12px;align-items:center"><img class="av" style="width:54px;height:54px" src={`/assets/players/${p.avatar}`} alt="" loading="lazy" /><div style="min-width:0"><b style="font-size:16px">{p.displayId}</b><div class="muted small">游戏ID：{p.gameId}</div><div class="small"><span class="tag">{p.isSub ? '替补' : p.role}</span></div></div></div>)}
+      </div>
+    </section>
+    <section class="blk"><div class="sec-h"><h2>本季比赛</h2></div><div class="grid g3">{ms.map(m => <MatchCard S={S} m={m} />)}</div></section>
+  </div>
+</Base>

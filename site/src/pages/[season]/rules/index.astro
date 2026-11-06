@@ -1,0 +1,26 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { seasonsWithData, loadSeason } from '../../../lib/data.js';
+export function getStaticPaths() { return seasonsWithData().map(s => ({ params: { season: s.slug } })); }
+const { season } = Astro.params; const S = loadSeason(season);
+const late = [['5 分钟以内', '口头警告，比赛正常进行'], ['5–10 分钟', '本场第一局扣除 1 个 ban 位，该 ban 位由对方额外获得'], ['10–15 分钟', '判负本场第一局，以 0:1 开局'], ['15 分钟以上', '视为弃权，判负本场（BO5 记 0:3，BO7 记 0:4）']];
+---
+<Base title="章程与规则" season={season} active="rules">
+  <div class="wrap">
+    <div class="pagehead"><h1>章程与规则</h1><p>{S.cfg.name} 适用。规则未提及的事项，以主办方赛前发布的补充通知为准。</p></div>
+    <div class="grid g2" style="margin-top:18px">
+      {S.rules.map(r => <a class="card pad" href={`/${season}/rules/${r.slug}/`}><span class="tag">{r.version} · 更新于 {r.updated}</span><h2 style="margin:10px 0 6px">{r.title}</h2><p class="muted" style="margin:0">{r.description}</p><div class="small" style="margin-top:10px;color:var(--gold2)">阅读全文 →</div></a>)}
+    </div>
+    <section class="blk"><div class="sec-h"><h2>速查 · 迟到处罚</h2><span class="muted small">以《规则声明》原文为准</span></div>
+      <div class="card tablewrap"><table class="t"><thead><tr><th>迟到时长</th><th>处罚</th></tr></thead><tbody>{late.map(([a, b]) => <tr><td style="white-space:nowrap"><b>{a}</b></td><td>{b}</td></tr>)}</tbody></table></div>
+      <p class="muted small">累计处罚：同一战队累计 2 次迟到（含 5 分钟以内），自第 2 次起每场追加扣除 1 个 ban 位。不可抗力须在 10 分钟内联系裁判并举证，顺延最长 10 分钟，每队最多 2 次。</p>
+    </section>
+    <section class="blk"><div class="sec-h"><h2>速查 · 轮换与申诉</h2></div>
+      <div class="grid g3">
+        <div class="card pad"><b>选手轮换</b><p class="muted small">瑞士轮每场最多换人 1 次，双败淘汰每场最多 2 次；仅可在两局之间、BP 开始前申报；被换下者不得重新上场。</p></div>
+        <div class="card pad"><b>掉线重开</b><p class="muted small">BP 阶段掉线重开 BP；对局开始后原则上不重开；同局 2 名及以上选手同时掉线且能举证，经裁判确认可重开，每队每场限 1 次。</p></div>
+        <div class="card pad"><b>申诉</b><p class="muted small">赛后 24 小时内向裁判组提交书面申诉及证据，逾期不受理；申诉期间原判罚不暂停执行；主办方裁定为最终结果。</p></div>
+      </div>
+    </section>
+  </div>
+</Base>

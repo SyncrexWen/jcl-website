@@ -1,0 +1,18 @@
+---
+import Base from '../../../layouts/Base.astro';
+import NewsCard from '../../../components/NewsCard.astro';
+import { seasonsWithData, loadSeason } from '../../../lib/data.js';
+export function getStaticPaths() { return seasonsWithData().map(s => ({ params: { season: s.slug } })); }
+const { season } = Astro.params; const S = loadSeason(season);
+const types = [...new Set(S.news.map(n => n.type))];
+const list = [...S.news].sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) || b.date.localeCompare(a.date));
+---
+<Base title="新闻与战报" season={season} active="news">
+  <div class="wrap">
+    <div class="pagehead"><h1>新闻与战报</h1><p>赛事公告、单场战报、赛前预告与专访。</p></div>
+    <div data-filter style="margin-top:18px">
+      <div class="chips"><button class="chip on" data-g="type" data-f="all">全部</button>{types.map(t => <button class="chip" data-g="type" data-f={t}>{t}</button>)}</div>
+      <div class="grid g3">{list.map(n => <div data-i data-type={n.type}><NewsCard S={S} n={n} /></div>)}</div>
+    </div>
+  </div>
+</Base>

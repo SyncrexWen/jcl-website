@@ -1,0 +1,172 @@
+[
+ {
+  "id": "i001",
+  "name": "破晓之刃",
+  "cat": "phys"
+ },
+ {
+  "id": "i002",
+  "name": "裂空长戟",
+  "cat": "phys"
+ },
+ {
+  "id": "i003",
+  "name": "赤焰战刃",
+  "cat": "phys"
+ },
+ {
+  "id": "i004",
+  "name": "无尽之弓",
+  "cat": "phys"
+ },
+ {
+  "id": "i005",
+  "name": "碎星重锤",
+  "cat": "phys"
+ },
+ {
+  "id": "i006",
+  "name": "逐风之矢",
+  "cat": "phys"
+ },
+ {
+  "id": "i007",
+  "name": "猎魔短刀",
+  "cat": "phys"
+ },
+ {
+  "id": "i008",
+  "name": "烈阳巨剑",
+  "cat": "phys"
+ },
+ {
+  "id": "i009",
+  "name": "星陨法典",
+  "cat": "magic"
+ },
+ {
+  "id": "i010",
+  "name": "幽冥之杖",
+  "cat": "magic"
+ },
+ {
+  "id": "i011",
+  "name": "时序沙漏",
+  "cat": "magic"
+ },
+ {
+  "id": "i012",
+  "name": "霜寒水晶",
+  "cat": "magic"
+ },
+ {
+  "id": "i013",
+  "name": "炽魂权杖",
+  "cat": "magic"
+ },
+ {
+  "id": "i014",
+  "name": "虚空棱镜",
+  "cat": "magic"
+ },
+ {
+  "id": "i015",
+  "name": "秘语之书",
+  "cat": "magic"
+ },
+ {
+  "id": "i016",
+  "name": "碧落冠冕",
+  "cat": "magic"
+ },
+ {
+  "id": "i017",
+  "name": "不动铠甲",
+  "cat": "def"
+ },
+ {
+  "id": "i018",
+  "name": "玄武之盾",
+  "cat": "def"
+ },
+ {
+  "id": "i019",
+  "name": "荆棘战衣",
+  "cat": "def"
+ },
+ {
+  "id": "i020",
+  "name": "寒冰护符",
+  "cat": "def"
+ },
+ {
+  "id": "i021",
+  "name": "圣光披风",
+  "cat": "def"
+ },
+ {
+  "id": "i022",
+  "name": "磐石战甲",
+  "cat": "def"
+ },
+ {
+  "id": "i023",
+  "name": "反伤棘甲",
+  "cat": "def"
+ },
+ {
+  "id": "i024",
+  "name": "守望之盔",
+  "cat": "def"
+ },
+ {
+  "id": "i025",
+  "name": "疾行之靴",
+  "cat": "boot"
+ },
+ {
+  "id": "i026",
+  "name": "冷静之靴",
+  "cat": "boot"
+ },
+ {
+  "id": "i027",
+  "name": "抵抗之靴",
+  "cat": "boot"
+ },
+ {
+  "id": "i028",
+  "name": "破阵之靴",
+  "cat": "boot"
+ },
+ {
+  "id": "i029",
+  "name": "利刃打野刀",
+  "cat": "jungle"
+ },
+ {
+  "id": "i030",
+  "name": "寒冰打野刀",
+  "cat": "jungle"
+ },
+ {
+  "id": "i031",
+  "name": "烈焰打野刀",
+  "cat": "jungle"
+ },
+ {
+  "id": "i032",
+  "name": "守护之环",
+  "cat": "support"
+ },
+ {
+  "id": "i033",
+  "name": "先知罗盘",
+  "cat": "support"
+ },
+ {
+  "id": "i034",
+  "name": "远征号角",
+  "cat": "support"
+ }
+]

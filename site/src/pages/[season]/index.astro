@@ -1,0 +1,97 @@
+---
+import Base from '../../layouts/Base.astro';
+import MatchCard from '../../components/MatchCard.astro';
+import SwissPath from '../../components/SwissPath.astro';
+import KnockoutPath from '../../components/KnockoutPath.astro';
+import TeamChip from '../../components/TeamChip.astro';
+import { seasons, seasonsWithData, loadSeason, dparts, sides } from '../../lib/data.js';
+export function getStaticPaths() { return seasons().map(s => ({ params: { season: s.slug } })); }
+const { season } = Astro.params;
+const info = seasons().find(s => s.slug === season);
+const has = seasonsWithData().some(s => s.slug === season);
+const S = has ? loadSeason(season) : null;
+let recent = [], upcoming = [], live = [], stageText = '', progress = 0, nextM = null;
+if (S) {
+  const ms = S.matches;
+  live = ms.filter(m => m.status === 'live');
+  recent = ms.filter(m => m.status === 'finished').slice(-4).reverse();
+  upcoming = ms.filter(m => m.status === 'scheduled');
+  nextM = upcoming.find(m => m.teamA && m.teamB) || upcoming[0];
+  const fin = ms.filter(m => m.status === 'finished').length;
+  progress = Math.round(fin / ms.length * 100);
+  const cur = live[0] || nextM;
+  stageText = cur ? `${cur.stage === 'swiss' ? '瑞士轮' : '双败淘汰赛'} · ${cur.label}` : '已结束';
+}
+---
+{!S ? (
+  <Base title={info?.name ?? '赛季'} season={season}>
+    <div class="wrap"><div class="pagehead"><h1>{info?.name}</h1><p>该赛季正在筹备中，敬请期待。</p></div>
+    <div class="card empty">报名与赛制信息将在赛事开启前发布。<br/><a class="btn" style="margin-top:14px" href="/seasons/">查看全部赛季</a></div></div>
+  </Base>
+) : (
+  <Base title={S.cfg.name} season={season} active="overview">
+    <section class="hero"><div class="wrap">
+      <div class="txt">
+        <span class="eyebrow">{S.cfg.game} · 北京大学基础医学院</span>
+        <h1><em>JCL</em> {S.cfg.shortName}</h1>
+        <p class="sub">{S.cfg.tagline}　瑞士轮 BO5 × 双败淘汰 BO7 · 全局 BP · 巅峰对决</p>
+        <div class="btns">
+          {live[0] ? <a class="btn pri" href={`/${season}/match/${live[0].id}/`}>● 正在进行：查看对阵</a> : <a class="btn pri" href={`/${season}/schedule/`}>查看赛程</a>}
+          <a class="btn" href={`/${season}/standings/`}>积分与对阵</a>
+          <a class="btn" href={`/${season}/rules/`}>章程与规则</a>
+        </div>
+      </div>
+      <div class="art"><img src="/assets/brand/trophy.jpg" alt="JCL 奖杯" /></div>
+    </div></section>
+
+    <div class="wrap">
+      <section class="blk">
+        <div class="card pad" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;align-items:center" id="status">
+          <div><div class="muted small">当前阶段</div><div style="font-size:20px;font-weight:800;margin-top:2px">{stageText}</div></div>
+          <div><div class="muted small">赛事进度 · 已完成 {S.matches.filter(m => m.status === 'finished').length}/{S.matches.length} 场</div><div style="height:8px;border-radius:99px;background:rgba(255,255,255,.08);margin-top:12px;overflow:hidden"><div style={`width:${progress}%;height:100%;background:linear-gradient(90deg,var(--teal2),var(--gold))`}></div></div></div>
+          <div>{nextM ? <><div class="muted small">下一场{nextM.teamA && nextM.teamB ? '' : '（对阵待定）'}</div><a href={`/${season}/match/${nextM.id}/`} style="font-weight:700">{nextM.label} · {dparts(nextM.time).date} {dparts(nextM.time).time}</a><div class="small" style="color:var(--gold2)"><span data-countdown={nextM.time}></span></div></> : <div class="muted">赛事已全部结束</div>}</div>
+        </div>
+      </section>
+
+      <section class="blk">
+        <div class="sec-h"><h2>晋级通路</h2><a class="more" href={`/${season}/standings/`}>完整积分榜 →</a></div>
+        <p class="muted small" style="margin:-6px 0 8px">第一赛段·瑞士轮（三胜晋级、三败淘汰，前 8 名晋级） → 第二赛段·双败淘汰赛（第 1–4 名入胜者组，第 5–8 名入败者组）</p>
+        <div class="card pad"><div class="muted small" style="margin-bottom:6px">第二赛段 · 双败淘汰赛</div><KnockoutPath S={S} /></div>
+        <details class="card pad" style="margin-top:14px"><summary style="cursor:pointer;font-weight:700">展开：第一赛段 · 瑞士轮完整路径</summary><div style="margin-top:12px"><SwissPath S={S} /></div></details>
+      </section>
+
+      <section class="blk">
+        <div class="sec-h"><h2>赛程与赛果</h2><a class="more" href={`/${season}/schedule/`}>全部赛程 →</a></div>
+        <div class="grid g4">
+          {[...live, ...upcoming.slice(0, 2), ...recent].slice(0, 4).map(m => <MatchCard S={S} m={m} />)}
+        </div>
+      </section>
+
+      <section class="blk">
+        <div class="grid" style="grid-template-columns:1.2fr 1fr;gap:18px">
+          <div>
+            <div class="sec-h"><h2>最新战报</h2><a class="more" href={`/${season}/news/`}>全部新闻 →</a></div>
+            <div class="grid g2">{S.news.slice(0, 4).map(n => <a class="nc card" href={`/${season}/news/${n.slug}/`}><div class="bd"><span class="tag">{n.type}</span><h3>{n.title}</h3><p>{n.summary}</p><div class="muted small" style="margin-top:8px">{n.date}</div></div></a>)}</div>
+          </div>
+          <div>
+            <div class="sec-h"><h2>瑞士轮前 8</h2><a class="more" href={`/${season}/standings/`}>→</a></div>
+            <div class="card tablewrap"><table class="t"><thead><tr><th>#</th><th>战队</th><th class="c">战绩</th><th class="c">净胜局</th></tr></thead><tbody>
+              {S.swiss.slice(0, 8).map(r => <tr class={r.status === 'advanced' ? 'adv' : ''}><td class="num">{r.rank}</td><td><TeamChip team={S.teamMap[r.id]} slug={season} /></td><td class="c num">{r.w}-{r.l}</td><td class="c num">{r.diff > 0 ? '+' : ''}{r.diff}</td></tr>)}
+            </tbody></table></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="blk">
+        <div class="sec-h"><h2>参赛战队</h2><a class="more" href={`/${season}/teams/`}>全部战队 →</a></div>
+        <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr))">
+          {S.teams.map(t => <a class="card pad" href={`/${season}/teams/${t.id}/`} style="display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center"><img src={`/assets/teams/${t.logo}`} alt="" style="width:56px;height:56px" /><b>{t.name}</b></a>)}
+        </div>
+      </section>
+    </div>
+  </Base>
+)}
+<style>
+  @media (max-width:760px){ #status{grid-template-columns:1fr !important} }
+  @media (max-width:900px){ section.blk > .grid[style*="1.2fr"]{grid-template-columns:1fr !important} }
+</style>

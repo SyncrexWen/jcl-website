@@ -1,0 +1,65 @@
+---
+import TeamChip from './TeamChip.astro';
+import HeroIcon from './HeroIcon.astro';
+import ItemIcon from './ItemIcon.astro';
+import { heroMap, fmtDur, fmtK, ROLES } from '../lib/data.js';
+const { S, m, g } = Astro.props;
+const T = { A: S.teamMap[m.teamA], B: S.teamMap[m.teamB] };
+const blue = g.blueSide, red = blue === 'A' ? 'B' : 'A';
+const live = g.status === 'live';
+// 此前小场已被使用的英雄（全局BP）
+const lockedBefore = [];
+for (const pg of m.games.filter(x => x.no < g.no)) for (const s of ['A', 'B']) for (const p of pg[s].players) lockedBefore.push({ hero: p.hero, game: pg.no, side: s });
+const tot = s => g[s].players.reduce((a, p) => ({ k: a.k + (p.k ?? 0), gold: a.gold + (p.gold ?? 0), dmg: a.dmg + (p.dmg ?? 0), taken: a.taken + (p.taken ?? 0) }), { k: 0, gold: 0, dmg: 0, taken: 0 });
+const tA = live ? null : tot('A'), tB = live ? null : tot('B');
+const goldPct = live ? 50 : Math.round(tA.gold / (tA.gold + tB.gold) * 100);
+const ordered = s => [...g[s].players].sort((a, b) => (a.order ?? ROLES.indexOf(a.role)) - (b.order ?? ROLES.indexOf(b.role)));
+const byRole = s => [...g[s].players].sort((a, b) => ROLES.indexOf(a.role) - ROLES.indexOf(b.role));
+---
+<div class="gp">
+  <div class="gp-head card pad">
+    <div class="gp-title">
+      <b>第 {g.no} 局</b>
+      {g.peak && <span class="badge peak">巅峰对决 · 盲选 · 无禁用</span>}
+      {live ? <span class="badge live">进行中</span> : <span class="badge fin">用时 {fmtDur(g.duration)}</span>}
+      {!live && <span class="winner">胜方：<TeamChip team={T[g.winner]} /></span>}
+    </div>
+    {!live && <div class="gbar"><span class="gb a" style={`width:${goldPct}%`}>{fmtK(tA.gold)}</span><span class="gb b" style={`width:${100 - goldPct}%`}>{fmtK(tB.gold)}</span></div>}
+    {!live && <div class="gstat"><span class="num">{tA.k}</span><span class="muted">击杀</span><span class="num">{tB.k}</span></div>}
+    {live && <div class="muted small" style="margin-top:8px">对局进行中：BP 已完成，选手数据将在比赛结束后更新。</div>}
+  </div>
+
+  <div class="lockbar card pad">
+    <div class="lbt"><b>全局 BP · 已锁定英雄</b><span class="muted small">{g.no === 1 ? '第一局，所有英雄均可选用' : `前 ${g.no - 1} 局已选用的 ${lockedBefore.length} 名英雄，本局双方均不可选用`}</span></div>
+    {lockedBefore.length > 0 && <div class="lockgrid">{lockedBefore.map(l => <span class="lk"><HeroIcon id={l.hero} size="sm" lock /><i>G{l.game}·{l.side === 'A' ? T.A.short : T.B.short}</i></span>)}</div>}
+  </div>
+
+  <div class="bp grid g2">
+    {[blue, red].map((s, i) => (
+      <div class={`bpside card pad ${i === 0 ? 'blue' : 'red'}`}>
+        <div class="bph"><TeamChip team={T[s]} size="lg" /><span class="sidetag">{i === 0 ? '蓝方' : '红方'}</span></div>
+        {!g.peak && <div class="bpr"><span class="lab">禁用</span><div class="ic">{g[s].bans.map(b => <HeroIcon id={b} ban />)}</div></div>}
+        <div class="bpr"><span class="lab">{g.peak ? '盲选' : '选用'}</span><div class="ic">{ordered(s).map(p => <span class="pk"><HeroIcon id={p.hero} />{p.order && <i>{p.order}</i>}<em>{p.role}</em></span>)}</div></div>
+      </div>
+    ))}
+  </div>
+
+  {!live && ['A', 'B'].map(s => (
+    <div class="card sbwrap">
+      <div class="sbh"><TeamChip team={T[s]} /><span class="muted small num">击杀 {s === 'A' ? tA.k : tB.k} · 经济 {fmtK(s === 'A' ? tA.gold : tB.gold)} · 伤害 {fmtK(s === 'A' ? tA.dmg : tB.dmg)} · 承伤 {fmtK(s === 'A' ? tA.taken : tB.taken)}</span>{g.winner === s && <span class="badge adv">胜</span>}</div>
+      <div class="tablewrap"><table class="t sb">
+        <thead><tr><th>选手</th><th>英雄</th><th class="c">KDA</th><th class="c">评分</th><th class="r">经济</th><th class="r">伤害</th><th class="r">承伤</th><th>装备</th></tr></thead>
+        <tbody>{byRole(s).map(p => { const pl = S.playerMap[p.player]; const h = heroMap[p.hero]; return (
+          <tr>
+            <td class="pcell"><img class="av" src={`/assets/players/${pl.avatar}`} alt="" loading="lazy" /><div><b>{pl.displayId}</b>{p.mvp && <span class="mvp">MVP</span>}<div class="muted small">{p.role} · {pl.gameId}</div></div></td>
+            <td><div class="hcell"><HeroIcon id={p.hero} size="sm" /><span>{h.name}</span></div></td>
+            <td class="c num"><b>{p.k}</b> / <span style="color:var(--loss)">{p.d}</span> / {p.a}</td>
+            <td class="c num">{p.rating.toFixed(1)}</td>
+            <td class="r num">{fmtK(p.gold)}</td><td class="r num">{fmtK(p.dmg)}</td><td class="r num">{fmtK(p.taken)}</td>
+            <td><div class="items">{Array.from({ length: 6 }).map((_, i) => <ItemIcon id={p.items[i]} />)}</div></td>
+          </tr>); })}</tbody>
+      </table></div>
+    </div>
+  ))}
+  {live && <div class="grid g2">{[blue, red].map(s => <div class="card pad"><div class="muted small" style="margin-bottom:8px"><TeamChip team={T[s]} /> 出场阵容</div>{byRole(s).map(p => { const pl = S.playerMap[p.player]; return <div class="hcell" style="padding:5px 0"><img class="av" style="width:30px;height:30px" src={`/assets/players/${pl.avatar}`} alt="" /><b>{pl.displayId}</b><span class="muted small">{p.role}</span><span style="margin-left:auto"><HeroIcon id={p.hero} size="sm" /></span></div>; })}</div>)}</div>}
+</div>

@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import MatchCard from '../../components/MatchCard.astro';
+import { seasonsWithData, loadSeason, dparts } from '../../lib/data.js';
+export function getStaticPaths() { return seasonsWithData().map(s => ({ params: { season: s.slug } })); }
+const { season } = Astro.params; const S = loadSeason(season);
+const days = {};
+for (const m of S.matches) { const d = dparts(m.time); (days[d.ymd] ||= { d, ms: [] }).ms.push(m); }
+const list = Object.entries(days).sort((a, b) => a[0].localeCompare(b[0])).map(([, v]) => v);
+---
+<Base title="赛程" season={season} active="schedule">
+  <div class="wrap">
+    <div class="pagehead"><h1>赛程与赛果</h1><p>{S.cfg.name} · 共 {S.matches.length} 场 · 点击比赛查看每一局的 BP 与选手数据　<span class="small">（时间为北京时间）</span></p></div>
+    <div data-filter style="margin-top:18px">
+      <div class="chips">
+        <button class="chip on" data-g="stage" data-f="all">全部阶段</button><button class="chip" data-g="stage" data-f="swiss">瑞士轮</button><button class="chip" data-g="stage" data-f="knockout">双败淘汰</button>
+        <span style="width:14px"></span>
+        <button class="chip on" data-g="status" data-f="all">全部状态</button><button class="chip" data-g="status" data-f="live">进行中</button><button class="chip" data-g="status" data-f="scheduled">未开始</button><button class="chip" data-g="status" data-f="finished">已结束</button>
+      </div>
+      {list.map(({ d, ms }) => (
+        <section data-day style="margin-bottom:22px">
+          <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:10px"><h3 style="font-size:18px">{d.date}</h3><span class="muted">{d.wd}</span></div>
+          <div class="grid g3">{ms.map(m => <div data-i data-stage={m.stage} data-status={m.status}><MatchCard S={S} m={m} /></div>)}</div>
+        </section>
+      ))}
+    </div>
+  </div>
+</Base>

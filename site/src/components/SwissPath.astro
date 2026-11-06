@@ -1,0 +1,56 @@
+---
+import { sides } from '../lib/data.js';
+const { S } = Astro.props;
+const OFF = 30, COLW = 152, GAP = 34, ROWH = 34, HEADH = 26, PADB = 6, GGAP = 18, RESW = 150, CHIPH = 30;
+const rounds = S.groups;
+const gh = g => HEADH + g.matches.length * ROWH + PADB;
+const colH = r => r.groups.reduce((s, g) => s + gh(g), 0) + GGAP * (r.groups.length - 1);
+// 结果列
+const byRec = {};
+for (const r of S.swiss) (byRec[`${r.w}-${r.l}`] ||= []).push(r);
+const resKeys = ['3-0', '3-1', '3-2', '2-3', '1-3', '0-3'].filter(k => byRec[k]?.length);
+const resMeta = { '3-0': '第1–2名 · 晋级', '3-1': '第3–5名 · 晋级', '3-2': '第6–8名 · 晋级', '2-3': '淘汰', '1-3': '淘汰', '0-3': '淘汰' };
+const rh = k => 26 + byRec[k].length * CHIPH + 8;
+const resH = resKeys.reduce((s, k) => s + rh(k), 0) + GGAP * (resKeys.length - 1);
+const H = Math.max(...rounds.map(colH), resH) + 24 + OFF;
+const boxes = {};
+rounds.forEach((r, ci) => { let y = (H - OFF - colH(r)) / 2 + OFF; r.groups.forEach(g => { boxes[`${r.round}:${g.rec}`] = { x: ci * (COLW + GAP), y, h: gh(g), g }; y += gh(g) + GGAP; }); });
+const resBoxes = {}; { let y = (H - OFF - resH) / 2 + OFF; for (const k of resKeys) { resBoxes[k] = { x: rounds.length * (COLW + GAP), y, h: rh(k) }; y += rh(k) + GGAP; } }
+const W = rounds.length * (COLW + GAP) + RESW;
+const paths = [];
+for (const r of rounds) for (const g of r.groups) {
+  const from = boxes[`${r.round}:${g.rec}`];
+  for (const [dw, dl, kind] of [[1, 0, 'w'], [0, 1, 'l']]) {
+    const nw = g.w + dw, nl = g.l + dl; let to = null;
+    if (nw >= 3 || nl >= 3) to = resBoxes[`${nw}-${nl}`] ? { ...resBoxes[`${nw}-${nl}`] } : null;
+    else to = boxes[`${r.round + 1}:${nw}-${nl}`];
+    if (!from || !to) continue;
+    const x1 = from.x + COLW, y1 = from.y + from.h / 2 + (kind === 'w' ? -8 : 8), x2 = to.x, y2 = to.y + (to.g ? (HEADH + 4) : 14) + (kind === 'w' ? 0 : 10);
+    const mx = (x1 + x2) / 2;
+    paths.push({ d: `M${x1} ${y1} C${mx} ${y1} ${mx} ${y2} ${x2} ${y2}`, kind });
+  }
+}
+---
+<div class="pathscroll"><div class="swiss" style={`width:${W}px;height:${H}px`}>
+  <svg class="conn" width={W} height={H}>{paths.map(p => <path d={p.d} class={p.kind} />)}</svg>
+  {rounds.map((r, ci) => (
+    <div class="colhead" style={`left:${ci * (COLW + GAP)}px;width:${COLW}px`}>第 {r.round} 轮 · BO{S.cfg.swiss.bo}</div>
+  ))}
+  <div class="colhead" style={`left:${rounds.length * (COLW + GAP)}px;width:${RESW}px`}>瑞士轮结果</div>
+  {Object.values(boxes).map(b => (
+    <div class="swbox" style={`left:${b.x}px;top:${b.y}px;width:${COLW}px;height:${b.h}px`}>
+      <div class="swh"><span>{b.g.rec}</span><span>{b.g.matches.length} 场</span></div>
+      {b.g.matches.map(m => { const [a, c] = sides(S, m); const fin = m.status === 'finished';
+        return <a class="swrow" href={`/${S.slug}/match/${m.id}/`} title={`${a.team?.name} vs ${c.team?.name}`}>
+          <span class={`t ${fin && m.winner === m.teamA ? 'w' : ''}`}><img src={`/assets/teams/${a.team?.logo}`} alt="" loading="lazy" /><b>{a.team?.short}</b></span>
+          <span class="s num">{fin ? `${m.scoreA}:${m.scoreB}` : 'vs'}</span>
+          <span class={`t r ${fin && m.winner === m.teamB ? 'w' : ''}`}><b>{c.team?.short}</b><img src={`/assets/teams/${c.team?.logo}`} alt="" loading="lazy" /></span>
+        </a>; })}
+    </div>
+  ))}
+  {resKeys.map(k => { const b = resBoxes[k]; const adv = k[0] === '3';
+    return <div class={`swbox res ${adv ? 'adv' : 'elim'}`} style={`left:${b.x}px;top:${b.y}px;width:${RESW}px;height:${b.h}px`}>
+      <div class="swh"><span>{k}</span><span>{resMeta[k]}</span></div>
+      {byRec[k].map(r => <a class="reschip" href={`/${S.slug}/teams/${r.id}/`}><img src={`/assets/teams/${S.teamMap[r.id].logo}`} alt="" loading="lazy" /><span>{S.teamMap[r.id].name}</span>{adv && <i class="num">#{r.rank}</i>}</a>)}
+    </div>; })}
+</div></div>

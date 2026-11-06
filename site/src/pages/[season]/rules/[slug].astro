@@ -1,0 +1,17 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { seasonsWithData, loadSeason } from '../../../lib/data.js';
+export function getStaticPaths() { return seasonsWithData().flatMap(s => loadSeason(s.slug).rules.map(r => ({ params: { season: s.slug, slug: r.slug } }))); }
+const { season, slug } = Astro.params; const S = loadSeason(season); const r = S.rules.find(x => x.slug === slug);
+---
+<Base title={r.title} season={season} active="rules" desc={r.description}>
+  <div class="wrap" style="padding-top:20px">
+    <div class="crumb"><a href={`/${season}/rules/`}>章程与规则</a> / {r.title}</div>
+    <h1 style="font-size:32px">{r.title}</h1>
+    <div class="muted small" style="margin:6px 0 24px">{r.version} · 更新于 {r.updated} · {S.cfg.name}</div>
+    <div class="twocol">
+      <nav class="toc"><div class="muted small" style="margin-bottom:8px">目录</div>{r.toc.filter(t => t.depth === 2).map(t => <a href={`#${t.id}`}>{t.text}</a>)}</nav>
+      <article class="prose" set:html={r.html}></article>
+    </div>
+  </div>
+</Base>

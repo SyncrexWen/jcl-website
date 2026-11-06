@@ -1,0 +1,21 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { seasonsWithData, loadSeason, teamRecord } from '../../../lib/data.js';
+export function getStaticPaths() { return seasonsWithData().map(s => ({ params: { season: s.slug } })); }
+const { season } = Astro.params; const S = loadSeason(season);
+const rank = Object.fromEntries(S.swiss.map(r => [r.id, r]));
+---
+<Base title="战队" season={season} active="teams">
+  <div class="wrap">
+    <div class="pagehead"><h1>参赛战队</h1><p>{S.teams.length} 支战队，以班级为单位组队。</p></div>
+    <div class="grid g4" style="margin-top:18px">
+      {S.teams.map(t => { const r = teamRecord(S, t.id); const k = rank[t.id]; return (
+        <a class="card pad" href={`/${season}/teams/${t.id}/`} style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px">
+          <img src={`/assets/teams/${t.logo}`} alt="" style="width:84px;height:84px" loading="lazy" />
+          <b style="font-size:17px">{t.name}</b><span class="muted small">{t.className}</span>
+          <span class="num small">本季 {r.w} 胜 {r.l} 负</span>
+          {k && <span class={`badge ${k.status === 'advanced' ? 'adv' : k.status === 'eliminated' ? 'elim' : ''}`}>瑞士轮 #{k.rank}</span>}
+        </a>); })}
+    </div>
+  </div>
+</Base>

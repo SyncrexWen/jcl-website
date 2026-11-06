@@ -1,0 +1,206 @@
+{
+ "slug": "2026-fall",
+ "name": "JCL 2026 Fall",
+ "shortName": "2026 Fall",
+ "game": "王者荣耀",
+ "status": "ongoing",
+ "demo": true,
+ "dates": "演示时间轴 · 2026.10.12 – 11.09",
+ "tagline": "这次，该我上场！",
+ "bansPerSide": 3,
+ "patch": "DEMO-0.1",
+ "swiss": {
+  "rounds": 5,
+  "winsToAdvance": 3,
+  "lossesToEliminate": 3,
+  "bo": 5,
+  "advance": 8,
+  "maxSubs": 1
+ },
+ "bracket": {
+  "bo": 7,
+  "maxSubs": 2,
+  "nodes": [
+   {
+    "id": "WR1-A",
+    "name": "胜者组第一轮",
+    "col": 0,
+    "row": 0,
+    "bo": 7,
+    "group": "w",
+    "slots": [
+     {
+      "seed": 1
+     },
+     {
+      "seed": 4
+     }
+    ]
+   },
+   {
+    "id": "WR1-B",
+    "name": "胜者组第一轮",
+    "col": 0,
+    "row": 1,
+    "bo": 7,
+    "group": "w",
+    "slots": [
+     {
+      "seed": 2
+     },
+     {
+      "seed": 3
+     }
+    ]
+   },
+   {
+    "id": "WF",
+    "name": "胜者组决赛",
+    "col": 1,
+    "row": 0.5,
+    "bo": 7,
+    "group": "w",
+    "slots": [
+     {
+      "match": "WR1-A",
+      "take": "winner"
+     },
+     {
+      "match": "WR1-B",
+      "take": "winner"
+     }
+    ]
+   },
+   {
+    "id": "LR1-A",
+    "name": "败者组第一轮",
+    "col": 0,
+    "row": 3.4,
+    "bo": 7,
+    "group": "l",
+    "place": "第7–8名",
+    "slots": [
+     {
+      "seed": 5
+     },
+     {
+      "seed": 8
+     }
+    ]
+   },
+   {
+    "id": "LR1-B",
+    "name": "败者组第一轮",
+    "col": 0,
+    "row": 4.4,
+    "bo": 7,
+    "group": "l",
+    "place": "第7–8名",
+    "slots": [
+     {
+      "seed": 6
+     },
+     {
+      "seed": 7
+     }
+    ]
+   },
+   {
+    "id": "LR2-A",
+    "name": "败者组第二轮",
+    "col": 1,
+    "row": 3.4,
+    "bo": 7,
+    "group": "l",
+    "place": "第5–6名",
+    "slots": [
+     {
+      "match": "WR1-A",
+      "take": "loser"
+     },
+     {
+      "match": "LR1-A",
+      "take": "winner"
+     }
+    ]
+   },
+   {
+    "id": "LR2-B",
+    "name": "败者组第二轮",
+    "col": 1,
+    "row": 4.4,
+    "bo": 7,
+    "group": "l",
+    "place": "第5–6名",
+    "slots": [
+     {
+      "match": "WR1-B",
+      "take": "loser"
+     },
+     {
+      "match": "LR1-B",
+      "take": "winner"
+     }
+    ]
+   },
+   {
+    "id": "LSF",
+    "name": "败者组半决赛",
+    "col": 2,
+    "row": 3.9,
+    "bo": 7,
+    "group": "l",
+    "place": "第4名",
+    "slots": [
+     {
+      "match": "LR2-A",
+      "take": "winner"
+     },
+     {
+      "match": "LR2-B",
+      "take": "winner"
+     }
+    ]
+   },
+   {
+    "id": "LF",
+    "name": "败者组决赛",
+    "col": 3,
+    "row": 2.6,
+    "bo": 7,
+    "group": "l",
+    "place": "第3名",
+    "slots": [
+     {
+      "match": "LSF",
+      "take": "winner"
+     },
+     {
+      "match": "WF",
+      "take": "loser"
+     }
+    ]
+   },
+   {
+    "id": "GF",
+    "name": "总决赛",
+    "col": 4,
+    "row": 1.4,
+    "bo": 7,
+    "group": "f",
+    "place": "亚军",
+    "winnerPlace": "冠军",
+    "slots": [
+     {
+      "match": "WF",
+      "take": "winner"
+     },
+     {
+      "match": "LF",
+      "take": "winner"
+     }
+    ]
+   }
+  ]
+ }
+}

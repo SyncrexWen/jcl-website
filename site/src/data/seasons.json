@@ -1,0 +1,16 @@
+[
+ {
+  "slug": "2026-fall",
+  "name": "JCL 2026 Fall",
+  "shortName": "2026 Fall",
+  "status": "ongoing",
+  "current": true
+ },
+ {
+  "slug": "2027-spring",
+  "name": "JCL 2027 Spring",
+  "shortName": "2027 Spring",
+  "status": "planned",
+  "current": false
+ }
+]

@@ -1,0 +1,80 @@
+---
+import Base from '../../../layouts/Base.astro';
+import TeamChip from '../../../components/TeamChip.astro';
+import GamePanel from '../../../components/GamePanel.astro';
+import HeroIcon from '../../../components/HeroIcon.astro';
+import MatchCard from '../../../components/MatchCard.astro';
+import { seasonsWithData, loadSeason, sides, dparts, fmtDur, fmtK, routeOf, h2h, heroMap } from '../../../lib/data.js';
+export function getStaticPaths() {
+  return seasonsWithData().flatMap(s => loadSeason(s.slug).matches.map(m => ({ params: { season: s.slug, id: m.id } })));
+}
+const { season, id } = Astro.params;
+const S = loadSeason(season); const m = S.matchMap[id];
+const [a, b] = sides(S, m); const d = dparts(m.time);
+const fin = m.status === 'finished', live = m.status === 'live';
+const route = routeOf(S, m.id);
+const news = S.news.filter(n => (n.matches || []).includes(m.id));
+const hh = m.teamA && m.teamB ? h2h(S, m.teamA, m.teamB, m.id) : [];
+const T = { A: S.teamMap[m.teamA], B: S.teamMap[m.teamB] };
+// 全局BP英雄池占用
+const used = { A: [], B: [] };
+for (const g of m.games) for (const s of ['A', 'B']) for (const p of g[s].players) used[s].push({ hero: p.hero, game: g.no });
+const rowSum = (g, s) => g[s].players.reduce((x, p) => x + (p.k ?? 0), 0);
+const goldOf = (g, s) => g[s].players.reduce((x, p) => x + (p.gold ?? 0), 0);
+---
+<Base title={`${a.team?.name ?? a.label} vs ${b.team?.name ?? b.label}`} season={season} active="schedule" desc={`${S.cfg.name} ${m.label}`}>
+  <div class="wrap" style="padding-top:20px">
+    <div class="crumb"><a href={`/${season}/`}>{S.cfg.shortName}</a> / <a href={`/${season}/schedule/`}>赛程</a> / {m.label} · {m.id}</div>
+    <div class="mh card">
+      <div class="tside"><TeamChip side={a} size="xl" slug={season} />{a.team && <span class="cn">{a.team.className}</span>}</div>
+      <div class="mid">
+        <div class="muted small">{m.label} · BO{m.bo}</div>
+        {fin || live
+          ? <div class="big num"><span class={fin && m.winner === m.teamA ? 'w' : fin ? 'l' : ''}>{m.scoreA}</span><span class="d">:</span><span class={fin && m.winner === m.teamB ? 'w' : fin ? 'l' : ''}>{m.scoreB}</span></div>
+          : <div class="big num"><span class="d" style="font-size:40px">VS</span></div>}
+        <div class="meta">
+          {live ? <span class="badge live">进行中 · 第 {m.games.length} 局</span> : fin ? <span class="badge fin">已结束</span> : <span class="badge sch">未开始</span>}
+          <div style="margin-top:8px">{d.date} {d.wd} {d.time}</div>
+          {!fin && !live && m.teamA && m.teamB && <div class="small">距开赛 <b data-countdown={m.time} style="color:var(--gold2)"></b></div>}
+        </div>
+      </div>
+      <div class="tside"><TeamChip side={b} size="xl" slug={season} />{b.team && <span class="cn">{b.team.className}</span>}</div>
+    </div>
+    {(route.win || route.lose) && <div class="route">{route.win && <span>胜者 → <b>{route.win}</b></span>}{route.lose && <span>败者 → <b>{route.lose}</b></span>}</div>}
+
+    {m.games.length > 0 ? (
+      <div data-tabs data-default={live ? `g${m.games.length}` : 'ov'} style="margin-top:6px">
+        <div class="tabs">
+          <button class="tab" data-tab="ov">总览</button>
+          {m.games.map(g => <button class="tab" data-tab={`g${g.no}`}>第 {g.no} 局{g.peak ? ' ★' : ''}{g.status === 'live' ? <span class="res" style="background:var(--live);color:#fff">LIVE</span> : <span class={`res ${g.winner === 'A' ? 'aw' : 'bw'}`}>{T[g.winner].short}胜</span>}</button>)}
+        </div>
+        <div class="panel" data-panel="ov">
+          <div class="card" style="overflow:hidden">
+            <div class="pad" style="padding-bottom:6px"><b>各局概览</b> <span class="muted small">点击一行进入该局</span></div>
+            {m.games.map(g => (
+              <a class="ovrow" href={`#g${g.no}`} onclick={`location.hash='g${g.no}'`}>
+                <span><b>G{g.no}</b>{g.peak && <span class="badge peak" style="margin-left:4px">巅</span>}</span>
+                <span>{g.status === 'live' ? <span class="badge live">进行中</span> : <TeamChip team={T[g.winner]} />}</span>
+                <span class="num muted">{g.duration ? fmtDur(g.duration) : '—'}</span>
+                <span class="num">{g.status === 'live' ? '—' : `${rowSum(g, 'A')} : ${rowSum(g, 'B')}`}<span class="muted small"> {g.status === 'live' ? '' : `· 经济差 ${fmtK(Math.abs(goldOf(g, 'A') - goldOf(g, 'B')))}`}</span></span>
+                <span class="ps">{g.A.players.map(p => <HeroIcon id={p.hero} size="sm" />)}<span class="vs">vs</span>{g.B.players.map(p => <HeroIcon id={p.hero} size="sm" />)}</span>
+              </a>
+            ))}
+          </div>
+          <div class="card pad" style="margin-top:14px">
+            <b>全局 BP · 本系列英雄使用情况</b> <span class="muted small">已选用的英雄在后续各局对双方均不可再选</span>
+            <div class="poolgrid" style="margin-top:12px">
+              {['A', 'B'].map(s => <div><TeamChip team={T[s]} /><div class="ph">{used[s].map(u => <span class="lk"><HeroIcon id={u.hero} size="sm" /><i>G{u.game}</i></span>)}</div></div>)}
+            </div>
+          </div>
+        </div>
+        {m.games.map(g => <div class="panel" data-panel={`g${g.no}`}><GamePanel S={S} m={m} g={g} /></div>)}
+      </div>
+    ) : (
+      <div class="card empty" style="margin-top:6px">比赛尚未开始。对局的 BP、选手数据将在比赛进行中与结束后更新。</div>
+    )}
+
+    {hh.length > 0 && <section class="blk"><div class="sec-h"><h2>本赛季交手记录</h2></div><div class="grid g3">{hh.map(x => <MatchCard S={S} m={x} extra={false} />)}</div></section>}
+    {news.length > 0 && <section class="blk"><div class="sec-h"><h2>相关报道</h2></div><div class="grid g3">{news.map(n => <a class="nc card" href={`/${season}/news/${n.slug}/`}><div class="bd"><span class="tag">{n.type}</span><h3>{n.title}</h3><p>{n.summary}</p><div class="muted small" style="margin-top:8px">{n.date}</div></div></a>)}</div></section>}
+  </div>
+</Base>

@@ -1,0 +1,5 @@
+---
+import { itemMap } from '../lib/data.js';
+const { id } = Astro.props; const it = itemMap[id];
+---
+{id ? <span class="it" title={it?.name ?? id}><img src={`/assets/items/${id}.svg`} alt={it?.name ?? id} loading="lazy" /></span> : <span class="it empty"></span>}

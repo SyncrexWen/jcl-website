@@ -1,0 +1,1010 @@
+[
+ {
+  "id": "t01-p1",
+  "team": "t01",
+  "role": "对抗路",
+  "isSub": false,
+  "gameId": "晚风画师",
+  "displayId": "Mino",
+  "avatar": "t01-p1.svg"
+ },
+ {
+  "id": "t01-p2",
+  "team": "t01",
+  "role": "中路",
+  "isSub": false,
+  "gameId": "星河船长",
+  "displayId": "Beto",
+  "avatar": "t01-p2.svg"
+ },
+ {
+  "id": "t01-p3",
+  "team": "t01",
+  "role": "发育路",
+  "isSub": false,
+  "gameId": "白日猎手",
+  "displayId": "Exri",
+  "avatar": "t01-p3.svg"
+ },
+ {
+  "id": "t01-p4",
+  "team": "t01",
+  "role": "打野",
+  "isSub": false,
+  "gameId": "星河学徒",
+  "displayId": "Toha",
+  "avatar": "t01-p4.svg"
+ },
+ {
+  "id": "t01-p5",
+  "team": "t01",
+  "role": "游走",
+  "isSub": false,
+  "gameId": "雾中画师",
+  "displayId": "Lalu",
+  "avatar": "t01-p5.svg"
+ },
+ {
+  "id": "t01-p6",
+  "team": "t01",
+  "role": "对抗路",
+  "isSub": true,
+  "gameId": "不眠诗人",
+  "displayId": "Zyzy",
+  "avatar": "t01-p6.svg"
+ },
+ {
+  "id": "t01-p7",
+  "team": "t01",
+  "role": "游走",
+  "isSub": true,
+  "gameId": "晚风药师",
+  "displayId": "Veto",
+  "avatar": "t01-p7.svg"
+ },
+ {
+  "id": "t02-p1",
+  "team": "t02",
+  "role": "对抗路",
+  "isSub": false,
+  "gameId": "雾中药师",
+  "displayId": "Veda",
+  "avatar": "t02-p1.svg"
+ },
+ {
+  "id": "t02-p2",
+  "team": "t02",
+  "role": "中路",
+  "isSub": false,
+  "gameId": "远山骑士",
+  "displayId": "Luor",
+  "avatar": "t02-p2.svg"
+ },
+ {
+  "id": "t02-p3",
+  "team": "t02",
+  "role": "发育路",
+  "isSub": false,
+  "gameId": "白日守夜人",
+  "displayId": "Exka",
+  "avatar": "t02-p3.svg"
+ },
+ {
+  "id": "t02-p4",
+  "team": "t02",
+  "role": "打野",
+  "isSub": false,
+  "gameId": "不眠守夜人",
+  "displayId": "Nono",
+  "avatar": "t02-p4.svg"
+ },
+ {
+  "id": "t02-p5",
+  "team": "t02",
+  "role": "游走",
+  "isSub": false,
+  "gameId": "追光画师",
+  "displayId": "Laha",
+  "avatar": "t02-p5.svg"
+ },
+ {
+  "id": "t02-p6",
+  "team": "t02",
+  "role": "对抗路",
+  "isSub": true,
+  "gameId": "沉默药师",
+  "displayId": "Luda",
+  "avatar": "t02-p6.svg"
+ },
+ {
+  "id": "t02-p7",
+  "team": "t02",
+  "role": "游走",
+  "isSub": true,
+  "gameId": "深海骑士",
+  "displayId": "Luha",
+  "avatar": "t02-p7.svg"
+ },
+ {
+  "id": "t03-p1",
+  "team": "t03",
+  "role": "对抗路",
+  "isSub": false,
+  "gameId": "不眠学徒",
+  "displayId": "Rizy",
+  "avatar": "t03-p1.svg"
+ },
+ {
+  "id": "t03-p2",
+  "team": "t03",
+  "role": "中路",
+  "isSub": false,
+  "gameId": "晚风猎手",
+  "displayId": "Lula",
+  "avatar": "t03-p2.svg"
+ },
+ {
+  "id": "t03-p3",
+  "team": "t03",
+  "role": "发育路",
+  "isSub": false,
+  "gameId": "晚风信使",
+  "displayId": "Hari",
+  "avatar": "t03-p3.svg"
+ },
+ {
+  "id": "t03-p4",
+  "team": "t03",
+  "role": "打野",
+  "isSub": false,
+  "gameId": "追光骑士",
+  "displayId": "Dafi",
+  "avatar": "t03-p4.svg"
+ },
+ {
+  "id": "t03-p5",
+  "team": "t03",
+  "role": "游走",
+  "isSub": false,
+  "gameId": "沉默船长",
+  "displayId": "Hami",
+  "avatar": "t03-p5.svg"
+ },
+ {
+  "id": "t03-p6",
+  "team": "t03",
+  "role": "对抗路",
+  "isSub": true,
+  "gameId": "追光守夜人",
+  "displayId": "Vesu",
+  "avatar": "t03-p6.svg"
+ },
+ {
+  "id": "t03-p7",
+  "team": "t03",
+  "role": "游走",
+  "isSub": true,
+  "gameId": "追光旅人",
+  "displayId": "Fika",
+  "avatar": "t03-p7.svg"
+ },
+ {
+  "id": "t04-p1",
+  "team": "t04",
+  "role": "对抗路",
+  "isSub": false,
+  "gameId": "雾中守夜人",
+  "displayId": "Hada",
+  "avatar": "t04-p1.svg"
+ },
+ {
+  "id": "t04-p2",
+  "team": "t04",
+  "role": "中路",
+  "isSub": false,
+  "gameId": "白日旅人",
+  "displayId": "Hafi",
+  "avatar": "t04-p2.svg"
+ },
+ {
+  "id": "t04-p3",
+  "team": "t04",
+  "role": "发育路",
+  "isSub": false,
+  "gameId": "星河信使",
+  "displayId": "Mifi",
+  "avatar": "t04-p3.svg"
+ },
+ {
+  "id": "t04-p4",
+  "team": "t04",
+  "role": "打野",
+  "isSub": false,
+  "gameId": "雾中旅人",
+  "displayId": "Orka",
+  "avatar": "t04-p4.svg"
+ },
+ {
+  "id": "t04-p5",
+  "team": "t04",
+  "role": "游走",
+  "isSub": false,
+  "gameId": "深海守夜人",
+  "displayId": "Orzy",
+  "avatar": "t04-p5.svg"
+ },
+ {
+  "id": "t04-p6",
+  "team": "t04",
+  "role": "对抗路",
+  "isSub": true,
+  "gameId": "远山药师",
+  "displayId": "Mibe",
+  "avatar": "t04-p6.svg"
+ },
+ {
+  "id": "t04-p7",
+  "team": "t04",
+  "role": "游走",
+  "isSub": true,
+  "gameId": "不眠船长",
+  "displayId": "Sula",
+  "avatar": "t04-p7.svg"
+ },
+ {
+  "id": "t05-p1",
+  "team": "t05",
+  "role": "对抗路",
+  "isSub": false,
+  "gameId": "沉默信使",
+  "displayId": "Veri",
+  "avatar": "t05-p1.svg"
+ },
+ {
+  "id": "t05-p2",
+  "team": "t05",
+  "role": "中路",
+  "isSub": false,
+  "gameId": "远山旅人",
+  "displayId": "Nozy",
+  "avatar": "t05-p2.svg"
+ },
+ {
+  "id": "t05-p3",
+  "team": "t05",
+  "role": "发育路",
+  "isSub": false,
+  "gameId": "星河旅人",
+  "displayId": "Befi",
+  "avatar": "t05-p3.svg"
+ },
+ {
+  "id": "t05-p4",
+  "team": "t05",
+  "role": "打野",
+  "isSub": false,
+  "gameId": "夜行骑士",
+  "displayId": "Noto",
+  "avatar": "t05-p4.svg"
+ },
+ {
+  "id": "t05-p5",
+  "team": "t05",
+  "role": "游走",
+  "isSub": false,
+  "gameId": "追光船长",
+  "displayId": "Beri",
+  "avatar": "t05-p5.svg"
+ },
+ {
+  "id": "t05-p6",
+  "team": "t05",
+  "role": "对抗路",
+  "isSub": true,
+  "gameId": "不眠药师",
+  "displayId": "Besu",
+  "avatar": "t05-p6.svg"
+ },
+ {
+  "id": "t05-p7",
+  "team": "t05",
+  "role": "游走",
+  "isSub": true,
+  "gameId": "夜行诗人",
+  "displayId": "Toto",
+  "avatar": "t05-p7.svg"
+ },
+ {
+  "id": "t06-p1",
+  "team": "t06",
+  "role": "对抗路",
+  "isSub": false,
+  "gameId": "不眠旅人",
+  "displayId": "Luto",
+  "avatar": "t06-p1.svg"
+ },
+ {
+  "id": "t06-p2",
+  "team": "t06",
+  "role": "中路",
+  "isSub": false,
+  "gameId": "远山学徒",
+  "displayId": "Dami",
+  "avatar": "t06-p2.svg"
+ },
+ {
+  "id": "t06-p3",
+  "team": "t06",
+  "role": "发育路",
+  "isSub": false,
+  "gameId": "沉默旅人",
+  "displayId": "Haha",
+  "avatar": "t06-p3.svg"
+ },
+ {
+  "id": "t06-p4",
+  "team": "t06",
+  "role": "打野",
+  "isSub": false,
+  "gameId": "晚风船长",
+  "displayId": "Exlu",
+  "avatar": "t06-p4.svg"
+ },
+ {
+  "id": "t06-p5",
+  "team": "t06",
+  "role": "游走",
+  "isSub": false,
+  "gameId": "晚风旅人",
+  "displayId": "Bemi",
+  "avatar": "t06-p5.svg"
+ },
+ {
+  "id": "t06-p6",
+  "team": "t06",
+  "role": "对抗路",
+  "isSub": true,
+  "gameId": "深海药师",
+  "displayId": "Fino",
+  "avatar": "t06-p6.svg"
+ },
+ {
+  "id": "t06-p7",
+  "team": "t06",
+  "role": "游走",
+  "isSub": true,
+  "gameId": "雾中猎手",
+  "displayId": "Fiex",
+  "avatar": "t06-p7.svg"
+ },
+ {
+  "id": "t07-p1",
+  "team": "t07",
+  "role": "对抗路",
+  "isSub": false,
+  "gameId": "星河画师",
+  "displayId": "Firi",
+  "avatar": "t07-p1.svg"
+ },
+ {
+  "id": "t07-p2",
+  "team": "t07",
+  "role": "中路",
+  "isSub": false,
+  "gameId": "深海信使",
+  "displayId": "Tobe",
+  "avatar": "t07-p2.svg"
+ },
+ {
+  "id": "t07-p3",
+  "team": "t07",
+  "role": "发育路",
+  "isSub": false,
+  "gameId": "雾中诗人",
+  "displayId": "Dato",
+  "avatar": "t07-p3.svg"
+ },
+ {
+  "id": "t07-p4",
+  "team": "t07",
+  "role": "打野",
+  "isSub": false,
+  "gameId": "雾中信使",
+  "displayId": "Nobe",
+  "avatar": "t07-p4.svg"
+ },
+ {
+  "id": "t07-p5",
+  "team": "t07",
+  "role": "游走",
+  "isSub": false,
+  "gameId": "沉默猎手",
+  "displayId": "Zybe",
+  "avatar": "t07-p5.svg"
+ },
+ {
+  "id": "t07-p6",
+  "team": "t07",
+  "role": "对抗路",
+  "isSub": true,
+  "gameId": "夜行画师",
+  "displayId": "Luka",
+  "avatar": "t07-p6.svg"
+ },
+ {
+  "id": "t07-p7",
+  "team": "t07",
+  "role": "游走",
+  "isSub": true,
+  "gameId": "沉默学徒",
+  "displayId": "Miha",
+  "avatar": "t07-p7.svg"
+ },
+ {
+  "id": "t08-p1",
+  "team": "t08",
+  "role": "对抗路",
+  "isSub": false,
+  "gameId": "追光药师",
+  "displayId": "Zyka",
+  "avatar": "t08-p1.svg"
+ },
+ {
+  "id": "t08-p2",
+  "team": "t08",
+  "role": "中路",
+  "isSub": false,
+  "gameId": "星河守夜人",
+  "displayId": "Nola",
+  "avatar": "t08-p2.svg"
+ },
+ {
+  "id": "t08-p3",
+  "team": "t08",
+  "role": "发育路",
+  "isSub": false,
+  "gameId": "夜行守夜人",
+  "displayId": "Lada",
+  "avatar": "t08-p3.svg"
+ },
+ {
+  "id": "t08-p4",
+  "team": "t08",
+  "role": "打野",
+  "isSub": false,
+  "gameId": "深海诗人",
+  "displayId": "Luve",
+  "avatar": "t08-p4.svg"
+ },
+ {
+  "id": "t08-p5",
+  "team": "t08",
+  "role": "游走",
+  "isSub": false,
+  "gameId": "晚风学徒",
+  "displayId": "Suzy",
+  "avatar": "t08-p5.svg"
+ },
+ {
+  "id": "t08-p6",
+  "team": "t08",
+  "role": "对抗路",
+  "isSub": true,
+  "gameId": "夜行船长",
+  "displayId": "Exto",
+  "avatar": "t08-p6.svg"
+ },
+ {
+  "id": "t08-p7",
+  "team": "t08",
+  "role": "游走",
+  "isSub": true,
+  "gameId": "星河药师",
+  "displayId": "Veve",
+  "avatar": "t08-p7.svg"
+ },
+ {
+  "id": "t09-p1",
+  "team": "t09",
+  "role": "对抗路",
+  "isSub": false,
+  "gameId": "白日船长",
+  "displayId": "Zyla",
+  "avatar": "t09-p1.svg"
+ },
+ {
+  "id": "t09-p2",
+  "team": "t09",
+  "role": "中路",
+  "isSub": false,
+  "gameId": "不眠画师",
+  "displayId": "Haex",
+  "avatar": "t09-p2.svg"
+ },
+ {
+  "id": "t09-p3",
+  "team": "t09",
+  "role": "发育路",
+  "isSub": false,
+  "gameId": "远山诗人",
+  "displayId": "Tomi",
+  "avatar": "t09-p3.svg"
+ },
+ {
+  "id": "t09-p4",
+  "team": "t09",
+  "role": "打野",
+  "isSub": false,
+  "gameId": "不眠猎手",
+  "displayId": "Riri",
+  "avatar": "t09-p4.svg"
+ },
+ {
+  "id": "t09-p5",
+  "team": "t09",
+  "role": "游走",
+  "isSub": false,
+  "gameId": "沉默诗人",
+  "displayId": "Mior",
+  "avatar": "t09-p5.svg"
+ },
+ {
+  "id": "t09-p6",
+  "team": "t09",
+  "role": "对抗路",
+  "isSub": true,
+  "gameId": "深海画师",
+  "displayId": "Kafi",
+  "avatar": "t09-p6.svg"
+ },
+ {
+  "id": "t09-p7",
+  "team": "t09",
+  "role": "游走",
+  "isSub": true,
+  "gameId": "白日信使",
+  "displayId": "Hazy",
+  "avatar": "t09-p7.svg"
+ },
+ {
+  "id": "t10-p1",
+  "team": "t10",
+  "role": "对抗路",
+  "isSub": false,
+  "gameId": "深海旅人",
+  "displayId": "Suka",
+  "avatar": "t10-p1.svg"
+ },
+ {
+  "id": "t10-p2",
+  "team": "t10",
+  "role": "中路",
+  "isSub": false,
+  "gameId": "夜行猎手",
+  "displayId": "Hato",
+  "avatar": "t10-p2.svg"
+ },
+ {
+  "id": "t10-p3",
+  "team": "t10",
+  "role": "发育路",
+  "isSub": false,
+  "gameId": "沉默守夜人",
+  "displayId": "Bezy",
+  "avatar": "t10-p3.svg"
+ },
+ {
+  "id": "t10-p4",
+  "team": "t10",
+  "role": "打野",
+  "isSub": false,
+  "gameId": "白日学徒",
+  "displayId": "Kaor",
+  "avatar": "t10-p4.svg"
+ },
+ {
+  "id": "t10-p5",
+  "team": "t10",
+  "role": "游走",
+  "isSub": false,
+  "gameId": "夜行信使",
+  "displayId": "Luzy",
+  "avatar": "t10-p5.svg"
+ },
+ {
+  "id": "t10-p6",
+  "team": "t10",
+  "role": "对抗路",
+  "isSub": true,
+  "gameId": "雾中学徒",
+  "displayId": "Labe",
+  "avatar": "t10-p6.svg"
+ },
+ {
+  "id": "t10-p7",
+  "team": "t10",
+  "role": "游走",
+  "isSub": true,
+  "gameId": "星河猎手",
+  "displayId": "Zymi",
+  "avatar": "t10-p7.svg"
+ },
+ {
+  "id": "t11-p1",
+  "team": "t11",
+  "role": "对抗路",
+  "isSub": false,
+  "gameId": "深海学徒",
+  "displayId": "Hano",
+  "avatar": "t11-p1.svg"
+ },
+ {
+  "id": "t11-p2",
+  "team": "t11",
+  "role": "中路",
+  "isSub": false,
+  "gameId": "不眠信使",
+  "displayId": "Exex",
+  "avatar": "t11-p2.svg"
+ },
+ {
+  "id": "t11-p3",
+  "team": "t11",
+  "role": "发育路",
+  "isSub": false,
+  "gameId": "白日药师",
+  "displayId": "Nomi",
+  "avatar": "t11-p3.svg"
+ },
+ {
+  "id": "t11-p4",
+  "team": "t11",
+  "role": "打野",
+  "isSub": false,
+  "gameId": "远山信使",
+  "displayId": "Rito",
+  "avatar": "t11-p4.svg"
+ },
+ {
+  "id": "t11-p5",
+  "team": "t11",
+  "role": "游走",
+  "isSub": false,
+  "gameId": "雾中船长",
+  "displayId": "Kala",
+  "avatar": "t11-p5.svg"
+ },
+ {
+  "id": "t11-p6",
+  "team": "t11",
+  "role": "对抗路",
+  "isSub": true,
+  "gameId": "雾中骑士",
+  "displayId": "Suda",
+  "avatar": "t11-p6.svg"
+ },
+ {
+  "id": "t11-p7",
+  "team": "t11",
+  "role": "游走",
+  "isSub": true,
+  "gameId": "远山船长",
+  "displayId": "Nolu",
+  "avatar": "t11-p7.svg"
+ },
+ {
+  "id": "t12-p1",
+  "team": "t12",
+  "role": "对抗路",
+  "isSub": false,
+  "gameId": "沉默骑士",
+  "displayId": "Laex",
+  "avatar": "t12-p1.svg"
+ },
+ {
+  "id": "t12-p2",
+  "team": "t12",
+  "role": "中路",
+  "isSub": false,
+  "gameId": "沉默画师",
+  "displayId": "Orsu",
+  "avatar": "t12-p2.svg"
+ },
+ {
+  "id": "t12-p3",
+  "team": "t12",
+  "role": "发育路",
+  "isSub": false,
+  "gameId": "晚风诗人",
+  "displayId": "Suor",
+  "avatar": "t12-p3.svg"
+ },
+ {
+  "id": "t12-p4",
+  "team": "t12",
+  "role": "打野",
+  "isSub": false,
+  "gameId": "星河诗人",
+  "displayId": "Fifi",
+  "avatar": "t12-p4.svg"
+ },
+ {
+  "id": "t12-p5",
+  "team": "t12",
+  "role": "游走",
+  "isSub": false,
+  "gameId": "追光信使",
+  "displayId": "Orto",
+  "avatar": "t12-p5.svg"
+ },
+ {
+  "id": "t12-p6",
+  "team": "t12",
+  "role": "对抗路",
+  "isSub": true,
+  "gameId": "白日诗人",
+  "displayId": "Toex",
+  "avatar": "t12-p6.svg"
+ },
+ {
+  "id": "t12-p7",
+  "team": "t12",
+  "role": "游走",
+  "isSub": true,
+  "gameId": "远山猎手",
+  "displayId": "Beor",
+  "avatar": "t12-p7.svg"
+ },
+ {
+  "id": "t13-p1",
+  "team": "t13",
+  "role": "对抗路",
+  "isSub": false,
+  "gameId": "远山守夜人",
+  "displayId": "Rior",
+  "avatar": "t13-p1.svg"
+ },
+ {
+  "id": "t13-p2",
+  "team": "t13",
+  "role": "中路",
+  "isSub": false,
+  "gameId": "追光猎手",
+  "displayId": "Sulu",
+  "avatar": "t13-p2.svg"
+ },
+ {
+  "id": "t13-p3",
+  "team": "t13",
+  "role": "发育路",
+  "isSub": false,
+  "gameId": "白日骑士",
+  "displayId": "Lave",
+  "avatar": "t13-p3.svg"
+ },
+ {
+  "id": "t13-p4",
+  "team": "t13",
+  "role": "打野",
+  "isSub": false,
+  "gameId": "晚风骑士",
+  "displayId": "Kano",
+  "avatar": "t13-p4.svg"
+ },
+ {
+  "id": "t13-p5",
+  "team": "t13",
+  "role": "游走",
+  "isSub": false,
+  "gameId": "不眠骑士",
+  "displayId": "Exsu",
+  "avatar": "t13-p5.svg"
+ },
+ {
+  "id": "t13-p6",
+  "team": "t13",
+  "role": "对抗路",
+  "isSub": true,
+  "gameId": "夜行学徒",
+  "displayId": "Daka",
+  "avatar": "t13-p6.svg"
+ },
+ {
+  "id": "t13-p7",
+  "team": "t13",
+  "role": "游走",
+  "isSub": true,
+  "gameId": "星河骑士",
+  "displayId": "Fimi",
+  "avatar": "t13-p7.svg"
+ },
+ {
+  "id": "t14-p1",
+  "team": "t14",
+  "role": "对抗路",
+  "isSub": false,
+  "gameId": "远山画师14",
+  "displayId": "Have",
+  "avatar": "t14-p1.svg"
+ },
+ {
+  "id": "t14-p2",
+  "team": "t14",
+  "role": "中路",
+  "isSub": false,
+  "gameId": "晚风守夜人",
+  "displayId": "Dala",
+  "avatar": "t14-p2.svg"
+ },
+ {
+  "id": "t14-p3",
+  "team": "t14",
+  "role": "发育路",
+  "isSub": false,
+  "gameId": "远山画师",
+  "displayId": "Orve",
+  "avatar": "t14-p3.svg"
+ },
+ {
+  "id": "t14-p4",
+  "team": "t14",
+  "role": "打野",
+  "isSub": false,
+  "gameId": "深海猎手",
+  "displayId": "Mika",
+  "avatar": "t14-p4.svg"
+ },
+ {
+  "id": "t14-p5",
+  "team": "t14",
+  "role": "游走",
+  "isSub": false,
+  "gameId": "追光学徒",
+  "displayId": "Belu",
+  "avatar": "t14-p5.svg"
+ },
+ {
+  "id": "t14-p6",
+  "team": "t14",
+  "role": "对抗路",
+  "isSub": true,
+  "gameId": "夜行药师",
+  "displayId": "Noka",
+  "avatar": "t14-p6.svg"
+ },
+ {
+  "id": "t14-p7",
+  "team": "t14",
+  "role": "游走",
+  "isSub": true,
+  "gameId": "追光诗人",
+  "displayId": "Haka",
+  "avatar": "t14-p7.svg"
+ },
+ {
+  "id": "t15-p1",
+  "team": "t15",
+  "role": "对抗路",
+  "isSub": false,
+  "gameId": "白日画师",
+  "displayId": "Zysu",
+  "avatar": "t15-p1.svg"
+ },
+ {
+  "id": "t15-p2",
+  "team": "t15",
+  "role": "中路",
+  "isSub": false,
+  "gameId": "沉默猎手75",
+  "displayId": "Noor",
+  "avatar": "t15-p2.svg"
+ },
+ {
+  "id": "t15-p3",
+  "team": "t15",
+  "role": "发育路",
+  "isSub": false,
+  "gameId": "晚风猎手14",
+  "displayId": "Tosu",
+  "avatar": "t15-p3.svg"
+ },
+ {
+  "id": "t15-p4",
+  "team": "t15",
+  "role": "打野",
+  "isSub": false,
+  "gameId": "深海船长",
+  "displayId": "Filu",
+  "avatar": "t15-p4.svg"
+ },
+ {
+  "id": "t15-p5",
+  "team": "t15",
+  "role": "游走",
+  "isSub": false,
+  "gameId": "深海信使95",
+  "displayId": "Rila",
+  "avatar": "t15-p5.svg"
+ },
+ {
+  "id": "t15-p6",
+  "team": "t15",
+  "role": "对抗路",
+  "isSub": true,
+  "gameId": "沉默骑士3",
+  "displayId": "Kasu",
+  "avatar": "t15-p6.svg"
+ },
+ {
+  "id": "t15-p7",
+  "team": "t15",
+  "role": "游走",
+  "isSub": true,
+  "gameId": "晚风骑士70",
+  "displayId": "Rimi",
+  "avatar": "t15-p7.svg"
+ },
+ {
+  "id": "t16-p1",
+  "team": "t16",
+  "role": "对抗路",
+  "isSub": false,
+  "gameId": "夜行旅人",
+  "displayId": "Luri",
+  "avatar": "t16-p1.svg"
+ },
+ {
+  "id": "t16-p2",
+  "team": "t16",
+  "role": "中路",
+  "isSub": false,
+  "gameId": "晚风画师55",
+  "displayId": "Tofi",
+  "avatar": "t16-p2.svg"
+ },
+ {
+  "id": "t16-p3",
+  "team": "t16",
+  "role": "发育路",
+  "isSub": false,
+  "gameId": "雾中画师71",
+  "displayId": "Nofi",
+  "avatar": "t16-p3.svg"
+ },
+ {
+  "id": "t16-p4",
+  "team": "t16",
+  "role": "打野",
+  "isSub": false,
+  "gameId": "星河诗人67",
+  "displayId": "Kaex",
+  "avatar": "t16-p4.svg"
+ },
+ {
+  "id": "t16-p5",
+  "team": "t16",
+  "role": "游走",
+  "isSub": false,
+  "gameId": "雾中旅人61",
+  "displayId": "Nori",
+  "avatar": "t16-p5.svg"
+ },
+ {
+  "id": "t16-p6",
+  "team": "t16",
+  "role": "对抗路",
+  "isSub": true,
+  "gameId": "白日学徒44",
+  "displayId": "Zyex",
+  "avatar": "t16-p6.svg"
+ },
+ {
+  "id": "t16-p7",
+  "team": "t16",
+  "role": "游走",
+  "isSub": true,
+  "gameId": "雾中药师80",
+  "displayId": "Kari",
+  "avatar": "t16-p7.svg"
+ }
+]

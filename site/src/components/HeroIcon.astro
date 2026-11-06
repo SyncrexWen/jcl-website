@@ -1,0 +1,6 @@
+---
+import { heroMap, ROLE_COLOR } from '../lib/data.js';
+const { id, size = '', ban = false, lock = false } = Astro.props;
+const h = heroMap[id];
+---
+<span class={`hi ${size} ${ban ? 'ban' : ''} ${lock ? 'lock' : ''}`} style={`--rc:${ROLE_COLOR[h?.role] ?? '#fff3'}`} title={`${h?.name ?? id}${h ? ' · ' + h.role : ''}`}><img src={`/assets/heroes/${id}.svg`} alt={h?.name ?? id} loading="lazy" /></span>

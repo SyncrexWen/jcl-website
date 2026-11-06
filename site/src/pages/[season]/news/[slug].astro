@@ -1,0 +1,20 @@
+---
+import Base from '../../../layouts/Base.astro';
+import MatchCard from '../../../components/MatchCard.astro';
+import { seasonsWithData, loadSeason } from '../../../lib/data.js';
+export function getStaticPaths() { return seasonsWithData().flatMap(s => loadSeason(s.slug).news.map(n => ({ params: { season: s.slug, slug: n.slug } }))); }
+const { season, slug } = Astro.params; const S = loadSeason(season); const n = S.news.find(x => x.slug === slug);
+const ms = (n.matches || []).map(id => S.matchMap[id]).filter(Boolean);
+---
+<Base title={n.title} season={season} active="news" desc={n.summary}>
+  <div class="wrap" style="padding-top:20px">
+    <div class="crumb"><a href={`/${season}/news/`}>新闻</a> / {n.type}</div>
+    <article class="prose">
+      <span class="tag">{n.type}</span>
+      <h1 style="font-size:32px;margin:10px 0 8px">{n.title}</h1>
+      <div class="muted small">{n.date} · {S.cfg.name}</div>
+      <div set:html={n.html} style="margin-top:18px"></div>
+    </article>
+    {ms.length > 0 && <section class="blk"><div class="sec-h"><h2>相关比赛</h2></div><div class="grid g3">{ms.map(m => <MatchCard S={S} m={m} />)}</div></section>}
+  </div>
+</Base>

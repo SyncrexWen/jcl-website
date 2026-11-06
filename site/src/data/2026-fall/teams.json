@@ -1,0 +1,210 @@
+[
+ {
+  "id": "t01",
+  "name": "线粒体",
+  "short": "MIT",
+  "logo": "t01.svg",
+  "colors": [
+   "#2a8794",
+   "#d9b865"
+  ],
+  "className": "演示 · 2022级临床一班",
+  "slogan": "全员在线",
+  "seed": 1
+ },
+ {
+  "id": "t02",
+  "name": "核糖体",
+  "short": "RIB",
+  "logo": "t02.svg",
+  "colors": [
+   "#c0504d",
+   "#f3d9a4"
+  ],
+  "className": "演示 · 2023级基础二班",
+  "slogan": "一起上场",
+  "seed": 2
+ },
+ {
+  "id": "t03",
+  "name": "溶酶体",
+  "short": "LYS",
+  "logo": "t03.svg",
+  "colors": [
+   "#5b6bd6",
+   "#f0e2a8"
+  ],
+  "className": "演示 · 2024级预防一班",
+  "slogan": "解剖对手的弱点",
+  "seed": 3
+ },
+ {
+  "id": "t04",
+  "name": "高尔基体",
+  "short": "GOL",
+  "logo": "t04.svg",
+  "colors": [
+   "#2f9e6e",
+   "#f2e3b0"
+  ],
+  "className": "演示 · 2025级口腔二班",
+  "slogan": "一起上场",
+  "seed": 4
+ },
+ {
+  "id": "t05",
+  "name": "突触",
+  "short": "SYN",
+  "logo": "t05.svg",
+  "colors": [
+   "#b5651d",
+   "#fbe6b3"
+  ],
+  "className": "演示 · 2022级临床一班",
+  "slogan": "一起上场",
+  "seed": 5
+ },
+ {
+  "id": "t06",
+  "name": "神经元",
+  "short": "NEU",
+  "logo": "t06.svg",
+  "colors": [
+   "#7a4fb5",
+   "#f1deaa"
+  ],
+  "className": "演示 · 2023级基础二班",
+  "slogan": "全员在线",
+  "seed": 6
+ },
+ {
+  "id": "t07",
+  "name": "胶质细胞",
+  "short": "GLI",
+  "logo": "t07.svg",
+  "colors": [
+   "#2276b8",
+   "#fff1c7"
+  ],
+  "className": "演示 · 2024级预防一班",
+  "slogan": "细胞也有梦想",
+  "seed": 7
+ },
+ {
+  "id": "t08",
+  "name": "红细胞",
+  "short": "ERY",
+  "logo": "t08.svg",
+  "colors": [
+   "#c23b6e",
+   "#ffe7b5"
+  ],
+  "className": "演示 · 2025级口腔二班",
+  "slogan": "一起上场",
+  "seed": 8
+ },
+ {
+  "id": "t09",
+  "name": "白细胞",
+  "short": "LEU",
+  "logo": "t09.svg",
+  "colors": [
+   "#2a8794",
+   "#d9b865"
+  ],
+  "className": "演示 · 2022级临床一班",
+  "slogan": "稳扎稳打",
+  "seed": 9
+ },
+ {
+  "id": "t10",
+  "name": "血小板",
+  "short": "PLT",
+  "logo": "t10.svg",
+  "colors": [
+   "#c0504d",
+   "#f3d9a4"
+  ],
+  "className": "演示 · 2023级基础二班",
+  "slogan": "一起上场",
+  "seed": 10
+ },
+ {
+  "id": "t11",
+  "name": "胰岛素",
+  "short": "INS",
+  "logo": "t11.svg",
+  "colors": [
+   "#5b6bd6",
+   "#f0e2a8"
+  ],
+  "className": "演示 · 2024级预防一班",
+  "slogan": "稳扎稳打",
+  "seed": 11
+ },
+ {
+  "id": "t12",
+  "name": "肾上腺",
+  "short": "ADR",
+  "logo": "t12.svg",
+  "colors": [
+   "#2f9e6e",
+   "#f2e3b0"
+  ],
+  "className": "演示 · 2025级口腔二班",
+  "slogan": "细胞也有梦想",
+  "seed": 12
+ },
+ {
+  "id": "t13",
+  "name": "海马",
+  "short": "HIP",
+  "logo": "t13.svg",
+  "colors": [
+   "#b5651d",
+   "#fbe6b3"
+  ],
+  "className": "演示 · 2022级临床一班",
+  "slogan": "稳扎稳打",
+  "seed": 13
+ },
+ {
+  "id": "t14",
+  "name": "杏仁核",
+  "short": "AMY",
+  "logo": "t14.svg",
+  "colors": [
+   "#7a4fb5",
+   "#f1deaa"
+  ],
+  "className": "演示 · 2023级基础二班",
+  "slogan": "解剖对手的弱点",
+  "seed": 14
+ },
+ {
+  "id": "t15",
+  "name": "内质网",
+  "short": "ER",
+  "logo": "t15.svg",
+  "colors": [
+   "#2276b8",
+   "#fff1c7"
+  ],
+  "className": "演示 · 2024级预防一班",
+  "slogan": "稳扎稳打",
+  "seed": 15
+ },
+ {
+  "id": "t16",
+  "name": "细胞核",
+  "short": "NUC",
+  "logo": "t16.svg",
+  "colors": [
+   "#c23b6e",
+   "#ffe7b5"
+  ],
+  "className": "演示 · 2025级口腔二班",
+  "slogan": "一起上场",
+  "seed": 16
+ }
+]

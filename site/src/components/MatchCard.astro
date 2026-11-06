@@ -1,0 +1,22 @@
+---
+import TeamChip from './TeamChip.astro';
+import { sides, dparts, STATUS } from '../lib/data.js';
+const { S, m, extra = true } = Astro.props;
+const [a, b] = sides(S, m); const d = dparts(m.time);
+const fin = m.status === 'finished', live = m.status === 'live';
+const cls = i => !fin ? '' : (m.winner && ((i === 0 ? m.teamA : m.teamB) === m.winner) ? 'w' : 'l');
+const stage = m.stage === 'swiss' ? m.label : m.label;
+---
+<a class="mc card" href={`/${S.slug}/match/${m.id}/`}>
+  <div class="top">
+    <span>{stage} · BO{m.bo}</span>
+    {live ? <span class="badge live">进行中</span> : fin ? <span class="badge fin">已结束</span> : <span class="badge sch">{d.date} {d.time}</span>}
+  </div>
+  {[a, b].map((s, i) => (
+    <div class={`row ${cls(i)}`}>
+      <TeamChip side={s} />
+      <span class="sc num">{fin || live ? (i === 0 ? m.scoreA : m.scoreB) : '–'}</span>
+    </div>
+  ))}
+  {extra && <div class="foot"><span>{d.date} {d.wd} {d.time}</span>{live ? <span style="color:var(--live)">第 {m.games.length} 局进行中</span> : !fin && m.teamA && m.teamB ? <span data-countdown={m.time}></span> : <span>{fin ? '查看详情 →' : ''}</span>}</div>}
+</a>

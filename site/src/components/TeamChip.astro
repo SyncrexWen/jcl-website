@@ -1,0 +1,9 @@
+---
+const { side, team: t0, label, size = '', slug = null } = Astro.props;
+const team = t0 ?? side?.team ?? null; const lab = label ?? side?.label ?? '待定';
+---
+{team
+  ? (slug
+      ? <a class={`tm ${size}`} href={`/${slug}/teams/${team.id}/`}><img src={`/assets/teams/${team.logo}`} alt="" loading="lazy" /><span class="nm">{team.name}</span></a>
+      : <span class={`tm ${size}`}><img src={`/assets/teams/${team.logo}`} alt="" loading="lazy" /><span class="nm">{team.name}</span></span>)
+  : <span class={`tm ph ${size}`}><span class="dot"></span><span class="nm">{lab}</span></span>}

@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+import { seasons, seasonsWithData, loadSeason } from '../../lib/data.js';
+const have = new Set(seasonsWithData().map(s => s.slug));
+---
+<Base title="全部赛季">
+  <div class="wrap">
+    <div class="pagehead"><h1>全部赛季</h1><p>JCL（基础杯）每个赛季独立存档，数据与规则互不影响。</p></div>
+    <div class="grid g3" style="margin-top:16px">
+      {seasons().map(s => { const S = have.has(s.slug) ? loadSeason(s.slug) : null; return (
+        <a class="card pad" href={`/${s.slug}/`}>
+          <span class={`badge ${s.status === 'ongoing' ? 'live' : 'sch'}`}>{s.status === 'ongoing' ? '进行中' : s.status === 'planned' ? '筹备中' : '已结束'}</span>
+          <h2 style="margin:12px 0 4px">{s.name}</h2>
+          <div class="muted small">{S ? `${S.teams.length} 支战队 · ${S.matches.length} 场比赛` : '报名与赛制将陆续发布'}</div>
+        </a>); })}
+    </div>
+  </div>
+</Base>

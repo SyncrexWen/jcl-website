@@ -1,0 +1,9 @@
+---
+const { S, n } = Astro.props;
+const m = n.matches?.[0] ? S.matchMap[n.matches[0]] : null;
+const ta = m?.teamA ? S.teamMap[m.teamA] : null, tb = m?.teamB ? S.teamMap[m.teamB] : null;
+---
+<a class="nc card" href={`/${S.slug}/news/${n.slug}/`}>
+  <div class="cover">{ta && tb ? <><img src={`/assets/teams/${ta.logo}`} alt="" /><span class="vs">VS</span><img src={`/assets/teams/${tb.logo}`} alt="" /></> : <span class="jc">JCL</span>}</div>
+  <div class="bd"><div style="display:flex;gap:8px;align-items:center"><span class="tag">{n.type}</span>{n.pinned && <span class="tag" style="background:rgba(255,255,255,.1);color:var(--ink)">置顶</span>}<span class="muted small" style="margin-left:auto">{n.date}</span></div><h3>{n.title}</h3><p>{n.summary}</p></div>
+</a>

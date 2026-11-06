@@ -1,0 +1,5 @@
+---
+import { currentSeason } from '../lib/data.js';
+const cur = currentSeason();
+---
+<html lang="zh-CN"><head><meta charset="utf-8" /><meta http-equiv="refresh" content={`0; url=/${cur.slug}/`} /><link rel="canonical" href={`/${cur.slug}/`} /><title>JCL 基础杯</title></head><body><a href={`/${cur.slug}/`}>进入 {cur.name}</a></body></html>

@@ -1,0 +1,48 @@
+---
+import '../styles/global.css';
+import { seasons, seasonsWithData } from '../lib/data.js';
+const { title = 'JCL 基础杯', season = null, active = '', desc = '北京大学基础医学院「基础杯」JCL 王者荣耀赛事官方网站（演示版）', demo = true } = Astro.props;
+const all = seasons(); const have = new Set(seasonsWithData().map(s => s.slug));
+const cur = all.find(s => s.slug === season);
+const nav = season && have.has(season) ? [
+  ['overview', '赛事总览', `/${season}/`], ['schedule', '赛程', `/${season}/schedule/`], ['standings', '积分与对阵', `/${season}/standings/`],
+  ['teams', '战队', `/${season}/teams/`], ['news', '新闻', `/${season}/news/`], ['rules', '章程与规则', `/${season}/rules/`],
+] : [];
+---
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{title === 'JCL 基础杯' ? title : `${title} · JCL 基础杯`}</title>
+  <meta name="description" content={desc} />
+  <meta name="theme-color" content="#071a20" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href={season ? `/${season}/` : '/'}><span class="mark">JCL</span><span>基础杯<small>Ji Chu League</small></span></a>
+      <nav class="main">
+        {nav.map(([k, t, h]) => <a href={h} class={active === k ? 'on' : ''}>{t}</a>)}
+      </nav>
+      <details class="seasonsw">
+        <summary>{cur ? cur.shortName : '赛季'} ▾</summary>
+        <div class="menu">
+          {all.map(s => <a href={have.has(s.slug) ? `/${s.slug}/` : `/seasons/`}><span>{s.shortName}</span><small>{s.status === 'ongoing' ? '进行中' : s.status === 'planned' ? '筹备中' : '存档'}</small></a>)}
+          <a href="/seasons/"><span>全部赛季</span><small>→</small></a>
+        </div>
+      </details>
+    </div>
+  </header>
+  {demo && <div class="demo">演示版本 · 页面中的战队、选手、英雄、装备与比赛数据均为模拟生成，与真实数据无关</div>}
+  <slot />
+  <footer>
+    <div class="wrap cols">
+      <div><b style="color:var(--gold2)">JCL · 基础杯</b><br/>北京大学基础医学院 王者荣耀赛事<br/><span class="small">本网站为校园赛事网站，非游戏官方网站。游戏名称及相关素材版权归其权利人所有。</span></div>
+      <div class="small">主办：北京大学基础医学院<br/>联系方式：（待补充）<br/>公众号：（待补充）</div>
+    </div>
+  </footer>
+  <script is:inline src="/js/app.js" defer></script>
+</body>
+</html>

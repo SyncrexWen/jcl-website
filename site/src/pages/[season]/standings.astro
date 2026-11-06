@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+import SwissPath from '../../components/SwissPath.astro';
+import KnockoutPath from '../../components/KnockoutPath.astro';
+import TeamChip from '../../components/TeamChip.astro';
+import { seasonsWithData, loadSeason } from '../../lib/data.js';
+export function getStaticPaths() { return seasonsWithData().map(s => ({ params: { season: s.slug } })); }
+const { season } = Astro.params; const S = loadSeason(season);
+const rounds = Array.from({ length: S.cfg.swiss.rounds }, (_, i) => i + 1);
+---
+<Base title="积分与对阵" season={season} active="standings">
+  <div class="wrap">
+    <div class="pagehead"><h1>积分与对阵</h1><p>积分榜与对阵图由比赛结果自动计算生成。排名依次比较：战绩 → 净胜局（小分）→ 相互对阵 → 必要时 BO1 加赛。</p></div>
+
+    <section class="blk"><div class="sec-h"><h2>第一赛段 · 瑞士轮积分榜</h2><span class="muted small">{S.swissDone ? '瑞士轮已结束' : '进行中'}</span></div>
+      <div class="card tablewrap"><table class="t"><thead><tr><th>#</th><th>战队</th><th class="c">战绩</th><th class="c">净胜局</th><th class="c">小场</th>{rounds.map(r => <th class="c">R{r}</th>)}<th>结果</th></tr></thead><tbody>
+        {S.swiss.map(r => <tr class={r.status}>
+          <td class="num">{r.rank}</td><td><TeamChip team={S.teamMap[r.id]} slug={season} /></td>
+          <td class="c num"><b>{r.w}-{r.l}</b></td><td class="c num">{r.diff > 0 ? '+' : ''}{r.diff}</td><td class="c num muted">{r.gw}:{r.gl}</td>
+          {rounds.map(n => { const x = r.results.find(q => q.round === n); return <td class="c num small">{x ? <a href={`/${season}/match/${x.id}/`} style={`color:${x.win ? 'var(--win)' : 'var(--loss)'}`} title={`vs ${S.teamMap[x.opp].name}`}>{S.teamMap[x.opp].short} {x.score}</a> : <span class="muted">—</span>}</td>; })}
+          <td>{r.status === 'advanced' ? <span class="badge adv">{r.rank <= 4 ? '晋级胜者组' : '晋级败者组'}</span> : r.status === 'eliminated' ? <span class="badge elim">淘汰</span> : <span class="badge">进行中</span>}</td>
+        </tr>)}
+      </tbody></table></div>
+    </section>
+
+    <section class="blk"><div class="sec-h"><h2>第二赛段 · 双败淘汰赛对阵图</h2></div><div class="card pad"><KnockoutPath S={S} /></div></section>
+    <section class="blk"><div class="sec-h"><h2>瑞士轮路径图</h2></div><div class="card pad"><SwissPath S={S} /><div class="legend"><span><i class="lw"></i>胜</span><span><i class="ll"></i>负</span><span class="muted">方框内为该战绩分组的对阵，点击进入比赛</span></div></div></section>
+  </div>
+</Base>
